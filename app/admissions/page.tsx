@@ -787,30 +787,12 @@ export default function AdmissionsPage() {
                             setFormData(p => ({
                               ...p,
                               is_premium: checked,
-                              admission_fee: checked ? "0" : (p.admission_fee === "0" ? String(settings ? settings.admissionFee : 2000) : p.admission_fee)
+                              admission_fee: checked ? "0" : String(settings ? settings.admissionFee : 500)
                             }));
                           }}
                           className="w-5 h-5 rounded border-emerald-500/40 text-emerald-500 focus:ring-emerald-500 cursor-pointer bg-black/20"
                         />
                         <Label htmlFor="is_premium" className="text-[10px] text-emerald-500 font-black uppercase cursor-pointer tracking-wider">Premium (VIP)</Label>
-                      </div>
-
-                      <div className="flex items-center gap-3 border-l border-emerald-500/20 pl-6">
-                        <input
-                          type="checkbox"
-                          id="admission_1000"
-                          checked={formData.admission_fee === "1000"}
-                          disabled={formData.is_premium}
-                          onChange={(e) => {
-                            const checked = e.target.checked;
-                            setFormData(p => ({
-                              ...p,
-                              admission_fee: checked ? "1000" : String(settings ? settings.admissionFee : 2000)
-                            }));
-                          }}
-                          className="w-5 h-5 rounded border-emerald-500/40 text-emerald-500 focus:ring-emerald-500 cursor-pointer bg-black/20 disabled:opacity-50"
-                        />
-                        <Label htmlFor="admission_1000" className="text-[10px] text-emerald-500 font-black uppercase cursor-pointer tracking-wider disabled:opacity-50">Admission 1000</Label>
                       </div>
                     </div>
 
