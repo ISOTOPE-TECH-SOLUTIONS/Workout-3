@@ -84,12 +84,10 @@ CREATE POLICY "Allow public access on gym_packages" ON gym_packages FOR ALL USIN
 
 -- Seed default packages
 INSERT INTO gym_packages (id, name, price, duration, type) VALUES
-('pkg_strength', 'Strength (Monthly)', 5000, 1, 'gym'),
-('pkg_cardio', 'Cardio (Monthly)', 3000, 1, 'gym'),
-('pkg_3month', '3 Months Plan', 14000, 3, 'gym'),
-('pkg_6month', '6 Months Plan', 26000, 6, 'gym'),
-('pkg_12month', '12 Months Plan', 50000, 12, 'gym'),
-('pkg_lifetime', 'Lifetime Membership', 80000, 1200, 'gym'),
+('pkg_monthly', 'Monthly Package', 1800, 1, 'gym'),
+('pkg_3month', '3 Months Plan', 5000, 3, 'gym'),
+('pkg_6month', '6 Months Plan', 9500, 6, 'gym'),
+('pkg_12month', '12 Months Plan', 15000, 12, 'gym'),
 ('add_cardio', 'Cardio Add-on (Monthly)', 3000, 1, 'addon'),
 ('add_pool_only', 'Pool Only (Monthly)', 3000, 1, 'addon'),
 ('add_pool_add', 'Pool Add-on (Monthly)', 1500, 1, 'addon'),
@@ -113,7 +111,7 @@ CREATE POLICY "Allow public access on system_settings" ON system_settings FOR AL
 
 -- Seed default settings
 INSERT INTO system_settings (key, value) VALUES
-('admission_fee', '2000'::jsonb),
+('admission_fee', '500'::jsonb),
 ('zk_config', '{"ip": "192.168.1.201", "port": 4370, "autoSync": true}'::jsonb),
 ('security', '{"username": "Admin", "password": "Hard!!3s"}'::jsonb)
 ON CONFLICT (key) DO NOTHING;

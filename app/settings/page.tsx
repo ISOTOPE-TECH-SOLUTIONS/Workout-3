@@ -16,7 +16,7 @@ export default function SettingsPage() {
   const [packages, setPackages] = useState<any[]>([]);
   const [addons, setAddons] = useState<any[]>([]);
   const [ptPackages, setPtPackages] = useState<any[]>([]);
-  const [admissionFee, setAdmissionFee] = useState<string>("2000");
+  const [admissionFee, setAdmissionFee] = useState<string>("500");
 
   // Security Credentials
   const [adminUser, setAdminUser] = useState("Admin");
@@ -33,7 +33,7 @@ export default function SettingsPage() {
     setIsMounted(true);
     memberCache.initialize().then(() => {
       const settings = dbService.getCachedSettings();
-      setAdmissionFee(String(settings.admissionFee || 2000));
+      setAdmissionFee(String(settings.admissionFee || 500));
       setAdminUser(settings.adminUser || "Admin");
 
       setPackages(dbService.getCachedPackages() || []);

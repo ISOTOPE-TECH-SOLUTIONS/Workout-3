@@ -44,8 +44,8 @@ const getDefaultFormData = (mode: AdmissionMode, zkId: string = "") => ({
    trainer_name: mode === 'employee' ? "Unassigned" : "",
    package_type: mode === 'employee' ? "Employee" : "Basic",
    trainer_package_type: "none",
-   membership_fee: mode === 'employee' ? "0" : "2500",
-   admission_fee: mode === 'employee' ? "0" : "2000",
+   membership_fee: mode === 'employee' ? "0" : "1800",
+   admission_fee: mode === 'employee' ? "0" : "500",
    trainer_fees: "0",
    amount_paid: mode === 'employee' ? "0" : "",
    zk_id: zkId,
@@ -54,7 +54,7 @@ const getDefaultFormData = (mode: AdmissionMode, zkId: string = "") => ({
    trainer_commission: "0",
    package_start_date: getTodayLocalDate(),
    custom_package_duration: "3",
-   custom_package_price: "12000"
+   custom_package_price: "5000"
 });
 
 export default function AdmissionsPage() {
@@ -152,12 +152,12 @@ export default function AdmissionsPage() {
          return;
       }
 
-      let mFee = 5000;
+      let mFee = 1800;
       if (formData.package_type === 'custom') {
          mFee = Number(formData.custom_package_price) || 0;
       } else {
          const selectedPkg = packages.find(p => p.id === formData.package_type || p.name === formData.package_type);
-         mFee = selectedPkg ? selectedPkg.price : 5000;
+         mFee = selectedPkg ? selectedPkg.price : 1800;
       }
 
       // Cardio Add-on Price
@@ -177,7 +177,7 @@ export default function AdmissionsPage() {
          tFee = Number(formData.trainer_commission) || 0;
       }
 
-       const standardAdmissionFee = settings ? settings.admissionFee : 2000;
+       const standardAdmissionFee = settings ? settings.admissionFee : 500;
        let aFee = formData.is_premium ? 0 : Number(formData.admission_fee);
        if (Number.isNaN(aFee)) {
           aFee = standardAdmissionFee;

@@ -21,7 +21,7 @@ const getCache = () => {
 const rawSupabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const isValidUrl = rawSupabaseUrl.startsWith('https://') || rawSupabaseUrl.startsWith('http://');
 const supabaseUrl = isValidUrl ? rawSupabaseUrl : 'https://dummy-id.supabase.co';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'dummy_key';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'dummy_key';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
@@ -117,16 +117,14 @@ const DEFAULT_SETTINGS = {
   zkAutoSync: true,
   adminUser: "Admin",
   adminPass: "Hard!!3s",
-  admissionFee: 2000
+  admissionFee: 500
 };
 
 const DEFAULT_PACKAGES = [
-  { id: "pkg_strength", name: "Strength (Monthly)", price: 5000, duration: 1, type: "gym" },
-  { id: "pkg_cardio", name: "Cardio (Monthly)", price: 3000, duration: 1, type: "gym" },
-  { id: "pkg_3month", name: "3 Months Plan", price: 14000, duration: 3, type: "gym" },
-  { id: "pkg_6month", name: "6 Months Plan", price: 26000, duration: 6, type: "gym" },
-  { id: "pkg_12month", name: "12 Months Plan", price: 50000, duration: 12, type: "gym" },
-  { id: "pkg_lifetime", name: "Lifetime Membership", price: 80000, duration: 1200, type: "gym" }
+  { id: "pkg_monthly", name: "Monthly Package", price: 1800, duration: 1, type: "gym" },
+  { id: "pkg_3month", name: "3 Months Plan", price: 5000, duration: 3, type: "gym" },
+  { id: "pkg_6month", name: "6 Months Plan", price: 9500, duration: 6, type: "gym" },
+  { id: "pkg_12month", name: "12 Months Plan", price: 15000, duration: 12, type: "gym" }
 ];
 
 const DEFAULT_ADDONS = [
@@ -180,11 +178,10 @@ const getPackageExpectedGymFee = (packageType: unknown, hasCardio: unknown) => {
   if (pkg) {
     basePrice = pkg.price;
   } else {
-    if (normalized === CARDIO_ONLY_PACKAGE) basePrice = 3000; // Default cardio only
-    else if (normalized === 'basic') basePrice = 2500;
-    else if (normalized === '6 months') basePrice = 10000;
-    else if (normalized === '12 months') basePrice = 15000;
-    else if (normalized === 'lifetime') basePrice = 25000;
+    if (normalized === CARDIO_ONLY_PACKAGE || normalized === 'basic' || normalized === 'monthly package' || normalized === 'pkg_monthly') basePrice = 1800;
+    else if (normalized === '3 months' || normalized === '3 months plan' || normalized === 'pkg_3month') basePrice = 5000;
+    else if (normalized === '6 months' || normalized === '6 months plan' || normalized === 'pkg_6month') basePrice = 9500;
+    else if (normalized === '12 months' || normalized === '12 months plan' || normalized === 'pkg_12month') basePrice = 15000;
     else if (normalized === 'employee') basePrice = 0;
   }
 
