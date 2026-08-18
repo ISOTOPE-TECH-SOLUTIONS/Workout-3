@@ -124,7 +124,8 @@ const DEFAULT_PACKAGES = [
   { id: "pkg_monthly", name: "Monthly Package", price: 1800, duration: 1, type: "gym" },
   { id: "pkg_3month", name: "3 Months Plan", price: 5000, duration: 3, type: "gym" },
   { id: "pkg_6month", name: "6 Months Plan", price: 9500, duration: 6, type: "gym" },
-  { id: "pkg_12month", name: "12 Months Plan", price: 15000, duration: 12, type: "gym" }
+  { id: "pkg_12month", name: "12 Months Plan", price: 15000, duration: 12, type: "gym" },
+  { id: "pkg_lifetime", name: "Lifetime Membership", price: 25000, duration: 1200, type: "gym" }
 ];
 
 const DEFAULT_ADDONS = [
@@ -182,6 +183,7 @@ const getPackageExpectedGymFee = (packageType: unknown, hasCardio: unknown) => {
     else if (normalized === '3 months' || normalized === '3 months plan' || normalized === 'pkg_3month') basePrice = 5000;
     else if (normalized === '6 months' || normalized === '6 months plan' || normalized === 'pkg_6month') basePrice = 9500;
     else if (normalized === '12 months' || normalized === '12 months plan' || normalized === 'pkg_12month') basePrice = 15000;
+    else if (normalized === 'lifetime' || normalized === 'lifetime membership' || normalized === 'pkg_lifetime') basePrice = 25000;
     else if (normalized === 'employee') basePrice = 0;
   }
 

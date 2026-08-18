@@ -88,6 +88,7 @@ INSERT INTO gym_packages (id, name, price, duration, type) VALUES
 ('pkg_3month', '3 Months Plan', 5000, 3, 'gym'),
 ('pkg_6month', '6 Months Plan', 9500, 6, 'gym'),
 ('pkg_12month', '12 Months Plan', 15000, 12, 'gym'),
+('pkg_lifetime', 'Lifetime Membership', 25000, 1200, 'gym'),
 ('add_cardio', 'Cardio Add-on (Monthly)', 3000, 1, 'addon'),
 ('add_pool_only', 'Pool Only (Monthly)', 3000, 1, 'addon'),
 ('add_pool_add', 'Pool Add-on (Monthly)', 1500, 1, 'addon'),
